@@ -16,6 +16,11 @@ const menuItems = [
     link: "/",
   },
   {
+    key: "20",
+    label: "CNTXT",
+    link: "/data_annotation",
+  },
+  {
     key: "1",
     label: "Playground",
     link: "/playground",

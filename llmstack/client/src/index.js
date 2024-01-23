@@ -1,14 +1,17 @@
-import { Box, createTheme, ThemeProvider } from "@mui/material";
-import CircularProgress from "@mui/material/CircularProgress";
-import { TourProvider } from "@reactour/tour";
 import React, { lazy } from "react";
 import { CookiesProvider } from "react-cookie";
+
 import ReactDOM from "react-dom/client";
+import "./index.css";
+
+import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { RecoilRoot } from "recoil";
-import "./index.css";
-import reportWebVitals from "./reportWebVitals";
+import CircularProgress from "@mui/material/CircularProgress";
+import { Box, createTheme, ThemeProvider } from "@mui/material";
+import { TourProvider } from "@reactour/tour";
 
+const DataAnnotationPage = lazy(() => import("./pages/data_annotation"));
 const App = lazy(() => import("./App"));
 const ErrorPage = lazy(() => import("./pages/error"));
 const PlaygroundPage = lazy(() => import("./pages/playground"));
@@ -25,10 +28,9 @@ const DataPage = lazy(() => import("./pages/data"));
 const Discover = lazy(() => import("./pages/discover"));
 const SchedulePage = lazy(() => import("./pages/schedule"));
 const AddAppRunSchedulePage = lazy(() => import("./pages/AddAppRunSchedule"));
-const AddDatasourceRefreshSchedulePage = lazy(
-  () => import("./pages/AddDatasourceRefreshSchedule"),
+const AddDatasourceRefreshSchedulePage = lazy(() =>
+  import("./pages/AddDatasourceRefreshSchedule"),
 );
-const SessionExpiredPage = lazy(() => import("./pages/SessionExpired"));
 
 const defaultTheme = createTheme({
   spacing: 4,
@@ -500,6 +502,14 @@ router = createBrowserRouter([
     ),
   },
   {
+    path: "/data_annotation",
+    element: (
+      <App>
+        <DataAnnotationPage />
+      </App>
+    ),
+  },
+  {
     path: "/organization",
     element: (
       <App>
@@ -522,10 +532,6 @@ router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignupPage />,
-  },
-  {
-    path: "/session-expired",
-    element: <SessionExpiredPage />,
   },
 ]);
 
@@ -561,3 +567,5 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
